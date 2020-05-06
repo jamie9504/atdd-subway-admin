@@ -1,7 +1,14 @@
 package wooteco.subway.admin.acceptance;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import io.restassured.RestAssured;
 import io.restassured.specification.RequestSpecification;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -10,14 +17,6 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import wooteco.subway.admin.dto.LineResponse;
-
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class LineAcceptanceTest {
@@ -38,14 +37,14 @@ public class LineAcceptanceTest {
     @Test
     void manageLine() {
         // when
-        createLine("신분당선");
+        createLine("신분당선"); // DB에 라인을 저장한다.
         createLine("1호선");
         createLine("2호선");
         createLine("3호선");
         // then
-        List<LineResponse> lines = getLines();
+        List<LineResponse> lines = getLines(); // DB에 있는 라인들을 불러온다.
         assertThat(lines.size()).isEqualTo(4);
-
+/*
         // when
         LineResponse line = getLine(lines.get(0).getId());
         // then
@@ -69,6 +68,7 @@ public class LineAcceptanceTest {
         // then
         List<LineResponse> linesAfterDelete = getLines();
         assertThat(linesAfterDelete.size()).isEqualTo(3);
+ */
     }
 
     private LineResponse getLine(Long id) {
