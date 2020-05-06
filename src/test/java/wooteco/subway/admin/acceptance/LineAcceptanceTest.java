@@ -38,12 +38,12 @@ public class LineAcceptanceTest {
     @Test
     void manageLine() {
         // when
-        createLine("신분당선");
+        createLine("신분당선"); // DB에 라인을 저장한다.
         createLine("1호선");
         createLine("2호선");
         createLine("3호선");
         // then
-        List<LineResponse> lines = getLines();
+        List<LineResponse> lines = getLines(); // DB에 있는 라인들을 불러온다.
         assertThat(lines.size()).isEqualTo(4);
 
         // when
