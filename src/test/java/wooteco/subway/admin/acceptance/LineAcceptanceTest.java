@@ -55,11 +55,12 @@ public class LineAcceptanceTest {
         assertThat(line.getStartTime()).isNotNull();
         assertThat(line.getEndTime()).isNotNull();
         assertThat(line.getIntervalTime()).isNotNull();
-        /*
+
         // when
         LocalTime startTime = LocalTime.of(8, 00);
         LocalTime endTime = LocalTime.of(22, 00);
         updateLine(line.getId(), startTime, endTime);
+
         //then
         LineResponse updatedLine = getLine(line.getId());
         assertThat(updatedLine.getStartTime()).isEqualTo(startTime);
@@ -70,7 +71,7 @@ public class LineAcceptanceTest {
         // then
         List<LineResponse> linesAfterDelete = getLines();
         assertThat(linesAfterDelete.size()).isEqualTo(3);
- */
+
     }
 
     private LineResponse getLine(Long id) {
