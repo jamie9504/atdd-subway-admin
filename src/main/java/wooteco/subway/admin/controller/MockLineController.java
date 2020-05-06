@@ -8,13 +8,11 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import wooteco.subway.admin.domain.Line;
@@ -22,7 +20,7 @@ import wooteco.subway.admin.dto.LineRequest;
 import wooteco.subway.admin.dto.LineResponse;
 
 @RestController
-@RequestMapping("/lines")
+// @RequestMapping("/lines")
 public class MockLineController {
 
     private Map<Long, Line> lines = new HashMap<>();
@@ -30,14 +28,12 @@ public class MockLineController {
     @GetMapping("")
     public ResponseEntity getLines() {
         List<LineResponse> lineResponses = new ArrayList<>();
-
         for (Long id : lines.keySet()) {
             Line line = lines.get(id);
             lineResponses.add(new LineResponse(id, line.getName(),
                 line.getStartTime(), line.getEndTime(), line.getIntervalTime(), line.getCreatedAt()
                 , line.getUpdatedAt(), new HashSet<>()));
         }
-
         return new ResponseEntity<Object>(lineResponses, HttpStatus.OK);
     }
 
@@ -68,12 +64,6 @@ public class MockLineController {
             request.getIntervalTime());
 
         line.update(dummyLine);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable Long id) {
-        lines.remove(id);
         return ResponseEntity.ok().build();
     }
 }

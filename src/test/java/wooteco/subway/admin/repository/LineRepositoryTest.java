@@ -20,7 +20,7 @@ class LineRepositoryTest {
 	@DisplayName("Line 생성 테스트")
 	@Test
 	void name() {
-		Line 신분당선 = lineRepository.save(new Line("신분당선", LocalTime.of(8, 00), LocalTime.of(8, 00), 10);
+		Line 신분당선 = lineRepository.save(new Line("신분당선", LocalTime.of(8, 00), LocalTime.of(8, 00), 10));
 
 		assertThat(신분당선.getId()).isNotNull();
 	}
