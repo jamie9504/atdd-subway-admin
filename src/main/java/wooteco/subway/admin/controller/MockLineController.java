@@ -30,12 +30,14 @@ public class MockLineController {
     @GetMapping("")
     public ResponseEntity getLines() {
         List<LineResponse> lineResponses = new ArrayList<>();
+
         for (Long id : lines.keySet()) {
             Line line = lines.get(id);
             lineResponses.add(new LineResponse(id, line.getName(),
                 line.getStartTime(), line.getEndTime(), line.getIntervalTime(), line.getCreatedAt()
                 , line.getUpdatedAt(), new HashSet<>()));
         }
+
         return new ResponseEntity<Object>(lineResponses, HttpStatus.OK);
     }
 
